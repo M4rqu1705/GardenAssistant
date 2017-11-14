@@ -1,0 +1,27 @@
+﻿To do:
+	(Mobile CSP) Program Garden Assistant
+		(Daniela)Start screen
+			-Background to display while program loads
+			-The main menu will load with this background
+		(Daniela)Generic Button Layout
+			-Text will be written on the Silkscreen font over this layout so everyting looks homogenous, pixelated and cute
+		(Daniela) Night Sky
+			-Good job!! It is looking great!!
+		(Daniela) Moon phases
+			-I susggest you can do them separately, without a background, to add randomness to each shar
+		(Daniela) Star and it's blinking phases
+			-If you do one star with different "stages" to it's blinking light, the program can randomize the rate at which it blinks
+				With a GIF it would be constant and repetitive
+		(Daniela)Grid Square 
+			-When the person uses the gnome, pinwheel, etc. to plan their garden, it has to be on a grid. This grid should have 4 tipes of "floor"
+				1. Blank spaces (the garden will not always have ALL the spaces filled, so there must be some blank squares where nothing can be planted on)
+				2. Grass (green, normal grass where normal plants can be put on)
+				3. Stone pathway (plants will not go on sidewalks because people can trip even on potted plants)
+				4. Normal cement (if the person has some sort of gazebo, this represents zones where only potted plants can be put on)
+			-Just so you know, these squares will be laid out on side by side, one on top or bottom of the other, to make a grid. You should make the sidewalk and the grass continuous (as in, where one ends, the other begins)
+
+//Copy this to notepad or word if you have trouble reading this sticky note
+
+¡¡Mucho éxito!! 
+
+♥ Aishiteru anata wa ♥
