@@ -1,0 +1,9 @@
+time = duration between november 18, 2017 at 7:42 AM until the current time
+
+(time/27.3)/floor(time/27.3)
+
+
+https://www.timeanddate.com/moon/phases/
+https://cseligman.com/text/sky/moonmotion.htm
+http://earthsky.org/moon-phases/understandingmoonphases
+https://www.space.com/62-earths-moon-phases-monthly-lunar-cycles-infographic.html
