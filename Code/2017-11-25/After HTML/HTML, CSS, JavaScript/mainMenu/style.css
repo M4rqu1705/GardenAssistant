@@ -1,0 +1,96 @@
+@font-face {
+    font-family: Silkscreen;
+    src: url('./../Silkscreen/slkscr.ttf');
+}
+
+*{
+	margin:0;
+	padding:0;
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+	font-family:Silkscreen;
+}
+
+a{
+	display: block;
+	width:100%!important;
+	height:100%!important;
+}
+
+#mainMenuBody{
+	margin:auto;
+	padding:0;
+	
+	height:100%;
+	
+	overflow-y:hidden;
+	overflow-x:hidden;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/backgroundMainMenu.png") no-repeat center top;
+	background-size: auto 100%;
+}
+
+#mainMenuGridLayoutButton{
+	position:relative;	top:46%;
+
+	margin:auto;	margin-bottom:4%;
+	padding:0;
+	
+	height:8%;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/gardenPlansMainMenuButton.png") no-repeat center top;
+	background-size:100%
+}
+
+#mainMenuGridLayoutButton:hover{
+	opacity:0.5;
+}
+
+#mainMenuJournalButton{
+	position:relative;	top:46%;
+	
+	margin:auto;	margin-bottom:4%;
+	padding:0;
+	
+	height:8%;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/journalMainMenuButton.png") no-repeat center top;
+	background-size:100%
+}
+
+#mainMenuPlantLogButton{
+	position:relative;	top:46%;
+	
+	margin:auto;	margin-bottom:4%;
+	padding:0;
+	
+	height:8%;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/plantLogMainMenuButton.png") no-repeat center top;
+	background-size:100%
+}
+
+#mainMenuLunarPhaseButton{
+	position:relative;	top:46%;
+	
+	margin:auto;
+	margin-bottom:4%;	padding:0;
+	
+	height:8%;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/lunarPhaseMainMenuButton.png") no-repeat center top;
+	background-size:100%
+}
+
+#mainMenuSettingsButton{
+	position:relative;	top:46%;
+	
+	margin:auto;	margin-bottom:4%;
+	padding:0;
+	
+	height:8%;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Main/settingsMainMenuButton.png") no-repeat center top;
+	background-size:100%
+}

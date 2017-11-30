@@ -1,0 +1,59 @@
+@font-face {
+    font-family: Silkscreen;
+    src: url('./../Silkscreen/slkscr.ttf');
+}
+
+*{
+	margin:0;
+	padding:0;
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+	font-family:Silkscreen;
+}
+
+#gridLayoutBody{
+	margin:auto;
+	padding:0;
+	
+	height:100%;
+	
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+	background:#9fffad url("./../../../../../Images/PNGs/Grid Plan/gridBackground.png") no-repeat center top;
+	background-size: auto 100%;
+}
+
+a{
+	display: block;
+	width:100%!important;
+	height:100%!important;
+}
+
+#gridLayoutBackButton{
+	background:#0000 url("./../../../../../Images/PNGs/Grid Plan/backGridButton.png") no-repeat center top;
+	background-size: 100% 100%;
+
+}
+
+#gridLayoutTextInput{
+	position:absolute;
+	top:0px;
+	margin:0;
+	padding:0;
+}
+
+#gridLayoutSaveButton{
+	position:absolute;
+	top:0px;
+	background:#0000 url("./../../../../../Images/PNGs/Grid Plan/saveGridButton.png") no-repeat center top;
+	background-size: 100% 100%;
+}
+
+#gridLayoutSettingsButton{
+	position:absolute;
+	top:0px;
+	background:#0000 url("./../../../../../Images/PNGs/Grid Plan/settingsGridButton.png") no-repeat center top;
+	background-size: 100% 100%;
+}
