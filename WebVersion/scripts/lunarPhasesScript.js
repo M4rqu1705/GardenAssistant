@@ -15,4 +15,4 @@ lunarPhasesBackButtonElement.style.marginLeft = lunarPhasesBackButtonElement.sty
 var lunarPhasesImageElement = document.getElementById("lunarPhasesImage");
 lunarPhasesImageElement.style.height = (window.innerHeight*.92)+"px";
 lunarPhasesImageElement.style.width = bodyElement.style.width+"px";
-lunarPhasesImageElement.src = "./../../../../../Images/PNGs/Lunar Phases/moonFirstQuarter.png";
+lunarPhasesImageElement.src = "./images/lunarPhases/moonFirstQuarter.png";

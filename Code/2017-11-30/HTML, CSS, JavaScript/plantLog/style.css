@@ -1,0 +1,64 @@
+@font-face {
+    font-family: Silkscreen;
+    src: url('./../Silkscreen/slkscr.ttf');
+}
+
+*{
+	margin:0;
+	padding:0;
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+	font-family:Silkscreen;
+}
+
+#plantLogBody{
+	margin:auto;
+	padding:0;
+	
+	height:100%;
+	
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+	background:#f6f1b4 url("./../../../../Images/PNGs/Journal/journalBackground.png") no-repeat center top;
+	background-size: auto 100%;
+}
+
+a{
+	display: block;
+	width:100%!important;
+	height:100%!important;
+}
+
+#plantLogBackButton{
+	background:#0000 url("./../../../../Images/PNGs/Journal/backJournalButton.png") no-repeat center top;
+	background-size: 100% 100%;
+
+}
+
+#plantLogSettingsButton{
+	position:absolute;
+	top:0px;
+	background:#0000 url("./../../../../Images/PNGs/Journal/settingsJournalButton.png") no-repeat center top;
+	background-size: 100% 100%;
+}
+
+#plantLogButtonsContainer{
+	margin:auto;
+	padding:0;
+	
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.plantLogButton{
+	margin:auto;
+	padding:0;
+	background:#000 url("./../../../../Images/PNGs/Journal/plantLogEntryLayout.png") no-repeat center top;
+	background-size: 100% 100%;
+}
+
+.plantLogButton:hover{
+	opacity:0.5;
+}
