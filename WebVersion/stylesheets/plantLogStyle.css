@@ -4,25 +4,11 @@
 }
 
 *{
-	margin:0;
-	padding:0;
-	overflow-y:auto;
-	overflow-x:hidden;
-	
-	font-family:Silkscreen;
-}
-
-#plantLogBody{
+	overflow:hidden;
 	margin:auto;
 	padding:0;
 	
-	height:100%;
-	
-	overflow-y:auto;
-	overflow-x:hidden;
-	
-	background:#f6f1b4 url("./../images/journal/journalBackground.png") no-repeat center top;
-	background-size: auto 100%;
+	font-family:Silkscreen;
 }
 
 a{
@@ -31,30 +17,42 @@ a{
 	height:100%;
 }
 
+#plantLogBody{
+	margin:auto;
+	padding:0;
+	
+	height:100%;
+	
+	background:#f6f1b4 url("./../images/journal/journalBackground.png") no-repeat center top;
+	background-size: auto 100%;
+}
+
+#plantLogHeader{
+	background-color:#875d27;
+}
+
 #plantLogBackButton{
+	position:fixed;
+	top:0px;	
 	background:#0000 url("./../images/journal/journalBackButton.png") no-repeat center top;
 	background-size: 100% 100%;
 
 }
 
 #plantLogSettingsButton{
-	position:absolute;
-	top:0px;
+	position:fixed;
 	background:#0000 url("./../images/journal/journalSettingsButton.png") no-repeat center top;
 	background-size: 100% 100%;
 }
 
 #plantLogButtonsContainer{
-	margin:auto;
-	padding:0;
-	
 	overflow-x:hidden;
 	overflow-y:auto;
+	margin:auto;
+	padding:0;
 }
 
 .plantLogButton{
-	margin:auto;
-	padding:0;
 	background:#000 url("./../images/journal/plantLogEntryLayout.png") no-repeat center top;
 	background-size: 100% 100%;
 }

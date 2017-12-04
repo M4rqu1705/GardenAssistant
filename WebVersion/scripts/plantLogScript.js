@@ -1,56 +1,78 @@
 var bodyElement = document.getElementsByTagName("body")[0];
-bodyElement.style.height = window.innerHeight+"px";
-bodyElement.style.width = window.innerHeight*(9/16)+"px";
-
 var plantLogHeaderElement = document.getElementById("plantLogHeader");
-plantLogHeaderElement.style.width = bodyElement.style.width+"px";
-plantLogHeaderElement.style.height = (window.innerHeight*.08)+"px";
-
 var plantLogBackButtonElement = document.getElementById("plantLogBackButton");
-plantLogBackButtonElement.style.height = (window.innerHeight*.05)+"px";
-plantLogBackButtonElement.style.width = (window.innerHeight*.05)+"px";
-plantLogBackButtonElement.style.marginTop = (window.innerHeight*.015)+"px";
+var plantLogSettingsButtonElement = document.getElementById("plantLogSettingsButton");
+var plantLogButtonsContainerElement = document.getElementById("plantLogButtonsContainer");
+var plantLogAddButtonElement = document.getElementById("plantLogAddButton");
+
+var appHeight = window.innerHeight;
+var appWidth = appHeight*(9/16);
+
+//Header
+bodyElement.style.height = appHeight+"px";
+bodyElement.style.width = appWidth+"px";
+plantLogHeaderElement.style.width = bodyElement.style.width+"px";
+plantLogHeaderElement.style.height = (appHeight*.08)+"px";
+
+plantLogBackButtonElement.style.height = (appHeight*.05)+"px";
+plantLogBackButtonElement.style.width = (appHeight*.05)+"px";
+plantLogBackButtonElement.style.marginTop = (appHeight*.015)+"px";
 plantLogBackButtonElement.style.marginLeft = plantLogBackButtonElement.style.marginTop;
 
-var plantLogSettingsButtonElement = document.getElementById("plantLogSettingsButton");
-plantLogSettingsButtonElement.style.height = (window.innerHeight*.05)+"px";
-plantLogSettingsButtonElement.style.width = (window.innerHeight*.05)+"px";
-plantLogSettingsButtonElement.style.right = (window.innerWidth- window.innerHeight*(9/16))/2+"px";
-plantLogSettingsButtonElement.style.marginTop = (window.innerHeight*.015)+"px";
+plantLogSettingsButtonElement.style.height = (appHeight*.05)+"px";
+plantLogSettingsButtonElement.style.width = (appHeight*.05)+"px";
+plantLogSettingsButtonElement.style.right = (window.innerWidth- appWidth)/2+"px";
+plantLogSettingsButtonElement.style.marginTop = (appHeight*.015)+"px";
 plantLogSettingsButtonElement.style.marginRight = plantLogBackButtonElement.style.marginTop;
+
+//Buttons
+plantLogButtonsContainerElement.style.height = appHeight*.92 + "px";
+
+plantLogAddButtonElement.parentNode.style.marginTop = appHeight*.01+"px";
+plantLogAddButtonElement.style.width = appWidth*.85 +"px";
+plantLogAddButtonElement.style.height = plantLogAddButtonElement.style.width*(38/132) +"px";
+plantLogAddButtonElement.style.fontSize = appHeight*.04 + "px";
+plantLogAddButtonElement.style.textAlign = "center";
 
 
 function refreshButtons(){
 	var plantLogButtonsElements = document.getElementsByClassName("plantLogButton");
 	
-	for(C = 0; C<plantLogButtonsElements.length; C++){
-		plantLogButtonsElements[C].style.width = (window.innerHeight*(9/16))*.9+"px";
-		plantLogButtonsElements[C].style.height = (((window.innerHeight*(9/16))*.9)*(38/132)) +"px";
-		plantLogButtonsElements[C].style.backgroundSize = (plantLogButtonsElements[C].style.height*(38/132))+"px "+ (window.innerHeight*0.1)*.9 +"px";	
-		plantLogButtonsElements[C].style.marginTop = window.innerHeight*.01+"px";
+	for(C = 0; C<plantLogButtonsElements.length-1; C++){
+		plantLogButtonsElements[C].style.width = appWidth*.85 +"px";
+		plantLogButtonsElements[C].style.height = plantLogButtonsElements[C].style.width*(38/132) +"px";
+		
+		plantLogButtonsElements[C].style.fontSize = appHeight*.04 + "px";
+		
+		plantLogButtonsElements[C].style.marginBottom = appHeight*.01+"px";
+		plantLogButtonsElements[C].style.margin= "auto";
+		plantLogButtonsElements[C].style.marginBottom= appHeight*.01+"px";
+		plantLogButtonsElements[C].style.padding = "0";
+		
+		plantLogButtonsElements[C].style.background = '#000 url("./images/journal/plantLogEntryLayout.png") no-repeat center top';
+		plantLogButtonsElements[C].style.backgroundSize = "100% 100%"
+		
+		plantLogButtonsElements[C].style.textDecoration = "none";
+		
+		plantLogButtonsElements[C].className = "plantLogButton";
+		plantLogButtonsElements[C].firstChild.href = "./plantLogGenericLayout.html";
+		plantLogButtonsElements[C].firstChild.style = "padding:0; margin:auto; text-decoration:none; text-align:center;";
+		plantLogButtonsElements[C].firstChild.firstChild.style += "padding:0; margin:auto;";	
+		
 	}
 }
 
-function addButton(){
+function addButton(textInput){
 	var plantLogButtonsContainer = document.getElementById("plantLogButtonsContainer");
 	
-	var nodeToAdd2 = document.createElement("span");
-	nodeToAdd2.innerHTML = prompt("Button name");
+	var nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = textInput;
+	if(nodeToAdd2.innerHTML.length>15)	nodeToAdd2.innerHTML = nodeToAdd2.innerHTML.slice(0,16);
+	nodeToAdd1 = document.createElement("a");	nodeToAdd1.innerHTML = nodeToAdd2.outerHTML;
+	var nodesToAdd = document.createElement("div");	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
 	
-	nodeToAdd1 = document.createElement("a");
-	nodeToAdd1.innerHTML = nodeToAdd2.outerHTML;
-	
-	var nodesToAdd = document.createElement("div");
-	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
-	
-	plantLogButtonsContainer.appendChild(nodesToAdd, document.getElementsByTagName("script")[1]);
-	
-	refreshButtons()
-	alert(plantLogButtonsContainer + ", " + plantLogButtonsContainer.firstChild + ", " + plantLogButtonsContainer.firstChild.firstChild)
-	
-	//plantLogButtonsContainer.firstChild.class = "plantLogButton";
-	plantLogButtonsContainer.firstChild.firstChild.href = "./plantLogGenericLayout.html";
-	plantLogButtonsElements[plantLogButtonsElements.length-1].child[0].child[0].style = "position:relative;	top:40%;	left:50%;";
+	nodesToAdd.className = "plantLogButton";
 
-	//<div class="plantLogButton"><a href="./plantLogGenericLayout.html"><span style="position:relative;	top:40%;	left:50%;">+</span></a></div>
+	plantLogButtonsContainer.insertBefore(nodesToAdd, document.getElementById("plantLogAddButton"));
+		
+	refreshButtons();	
 }
