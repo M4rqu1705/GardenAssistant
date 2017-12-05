@@ -42,26 +42,35 @@ gridLayoutTextInputElement.children[1].style.marginTop = (appHeight*.015)+"px";
 
 gridLayoutIconContainerElement.style.height = appHeight -(gridLayoutHeaderElement.style.height + (appWidth*.1*14)) + "px";
 
-for(var C = 0; C<gridLayoutIconElements.length; C++){
-	gridLayoutIconElements[C].style.height = gridLayoutIconContainerElement.style.height;
-	gridLayoutIconElements[C].style.width = gridLayoutIconContainerElement.style.height;
-}
-
 createGrid();
 
 function createGrid(){
 	var gridToAdd = document.createElement("div");
+	gridToAdd.style.height = appWidth*.1*14+"px";
+	gridToAdd.style.width = appWidth+"px";
+	gridToAdd.style.margin = "0";
+	
 	for(var C = 0; C<14; C++){
 		var firstDiv = document.createElement("div");
-		firstDiv.style.width = appWidth+"px";
-		firstDiv.style.height = appWidth*.1+"px";
-		//firstDiv.style = "";
+		firstDiv.style = "width:" + appWidth + "px;" + 
+			"height:" + appWidth*.1 + "px" +
+			"padding:0" + 
+			"margin:0";
 		
 		for(var D = 0; D<10; D++){
 			var secondDiv = document.createElement("div");
+			var boxSelector = document.createElement("div");
 			secondDiv.className = "box";
-			secondDiv.ondrop = "drop(event)";
-			secondDiv.ondragover="allowDrop(event)";
+			secondDiv.addEventListener("dragover", allowDrop);
+			secondDiv.addEventListener("drop", drop);
+			secondDiv.addEventListener("click", function(){
+				if(boxSelector.style.display == true){
+					boxSelector.style.display = false;
+				}
+				else{
+					boxSelector.style.display = true;
+				}
+			});
 			secondDiv.style = "border:1px solid black;" +
 				"width:"+appWidth*.1+"px;" +
 				"height:"+appWidth*.1+"px;" +
@@ -69,15 +78,30 @@ function createGrid(){
 				"left:"+(((window.innerWidth-appWidth)/2)+(appWidth*.1*D))+"px;" +
 				" top:"+((gridLayoutHeaderElement.style.height)+(appWidth*.1*C))+"px;";
 			firstDiv.appendChild(secondDiv);
-		}
-		firstDiv.style.padding="0";
-		firstDiv.style.margin="0";
+			/*
+			var backgroundBoxSelectorImages = [
+				'',
+				'./images/gridLayout/dirtSquare.png',
+				'./images/gridLayout/grassSquare.png',
+				'./images/gridLayout/cementSquare.png'
+			];
+			for(var C = 0; C<backgroundBoxSelectorImages.length; C++){
+				var imageToAdd = document.createElement("img");
+				imageToAdd.src = backgroundBoxSelectorImages[C];
+				imageToAdd.style = "height:100px;"+
+					"width:100px;" + 
+					"position:relative;";
+				imageToAdd.addEventListener("click", function(){
+					alert("Hello");
+				});
+			}
+			boxSelector.backgroundColor="#555";
+			
+			firstDiv.appendChild(boxSelector);
+			}*/
 		gridToAdd.appendChild(firstDiv);
 	}
-	//alert(gridToAdd);
-	gridToAdd.style.height = appWidth*.1*14+"px";
-	gridToAdd.style.width = appWidth+"px";
-	gridToAdd.style.margin = "0";
+	
 	bodyElement.insertBefore(gridToAdd, gridLayoutIconContainerElement);
 }
 
@@ -93,4 +117,8 @@ function drop(ev){
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
 	ev.target.appendChild(document.getElementById(data));
+}
+
+function boxBackgroundMenu(){
+	
 }
