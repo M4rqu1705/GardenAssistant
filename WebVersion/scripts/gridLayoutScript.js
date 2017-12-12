@@ -6,6 +6,7 @@ var gridLayoutSaveButtonElement = document.getElementById("gridLayoutSaveButton"
 var gridLayoutTextInputElement = document.getElementById("gridLayoutTextInput");
 var gridLayoutIconContainerElement = document.getElementById("gridLayoutIconContainer");
 var gridLayoutIconElements = document.getElementsByClassName("gridLayoutIcon");
+var gridLayoutImageSelectionAlertElement = document.getElementById("imageSelectionAlert");
 
 var appHeight = window.innerHeight;
 var appWidth = appHeight*(9/16);
@@ -27,6 +28,8 @@ gridLayoutTextInputElement.children[0].style.width = appWidth*.45+"px";
 gridLayoutTextInputElement.children[0].style.height = (appHeight*.047)+"px";
 gridLayoutTextInputElement.children[1].style.width = appWidth*.15+"px";;
 gridLayoutTextInputElement.children[1].style.height = (appHeight*.047)+"px";
+gridLayoutImageSelectionAlertElement.style.height = appWidth+"px";
+gridLayoutImageSelectionAlertElement.style.width = appWidth+"px";
 
 gridLayoutBackButtonElement.style.marginTop = (appHeight*.015)+"px";
 gridLayoutBackButtonElement.style.marginLeft = gridLayoutBackButtonElement.style.marginTop;
@@ -39,69 +42,50 @@ gridLayoutSaveButtonElement.style.marginRight = gridLayoutBackButtonElement.styl
 gridLayoutTextInputElement.style.marginLeft = appWidth*.14+"px";
 gridLayoutTextInputElement.children[0].style.marginTop = (appHeight*.015)+"px";
 gridLayoutTextInputElement.children[1].style.marginTop = (appHeight*.015)+"px";
+gridLayoutImageSelectionAlertElement.style.margin="auto";
+gridLayoutImageSelectionAlertElement.style.top = gridLayoutHeaderElement.style.height + "px";
 
 gridLayoutIconContainerElement.style.height = appHeight -(gridLayoutHeaderElement.style.height + (appWidth*.1*14)) + "px";
+
+for(var C = 0; C<gridLayoutIconElements.length; C++){
+	if(gridLayoutIconElements[C].src.substr("./images/gridLayout/appleIcon.png")){
+		gridLayoutIconElements[C].style.width = appWidth*0.09+"px";
+	}
+}
+
 
 createGrid();
 
 function createGrid(){
 	var gridToAdd = document.createElement("div");
-	gridToAdd.style.height = appWidth*.1*14+"px";
-	gridToAdd.style.width = appWidth+"px";
-	gridToAdd.style.margin = "0";
 	
 	for(var C = 0; C<14; C++){
 		var firstDiv = document.createElement("div");
-		firstDiv.style = "width:" + appWidth + "px;" + 
-			"height:" + appWidth*.1 + "px" +
-			"padding:0" + 
-			"margin:0";
+		firstDiv.style = "width:" + appWidth + "px; " + 
+			"height:" + appWidth*.1 + "px; " +
+			"padding:0; " + 
+			"margin:0; ";
 		
 		for(var D = 0; D<10; D++){
 			var secondDiv = document.createElement("div");
-			var boxSelector = document.createElement("div");
 			secondDiv.className = "box";
 			secondDiv.addEventListener("dragover", allowDrop);
 			secondDiv.addEventListener("drop", drop);
-			secondDiv.addEventListener("click", function(){
-				if(boxSelector.style.display == true){
-					boxSelector.style.display = false;
-				}
-				else{
-					boxSelector.style.display = true;
-				}
-			});
+			secondDiv.addEventListener("click", backgroundImageAlert());
 			secondDiv.style = "border:1px solid black;" +
-				"width:"+appWidth*.1+"px;" +
-				"height:"+appWidth*.1+"px;" +
-				"position:absolute;" +
-				"left:"+(((window.innerWidth-appWidth)/2)+(appWidth*.1*D))+"px;" +
-				" top:"+((gridLayoutHeaderElement.style.height)+(appWidth*.1*C))+"px;";
+				"width:"+appWidth*.1+"px; " +
+				"height:"+appWidth*.1+"px; " +
+				"position:absolute; " +
+				"left:"+((Math.floor(window.innerWidth-appWidth)/2)+(appWidth*.1*D))+"px; " +
+				" top:"+((gridLayoutHeaderElement.style.height)+(appWidth*.1*C))+"px; ";
 			firstDiv.appendChild(secondDiv);
-			/*
-			var backgroundBoxSelectorImages = [
-				'',
-				'./images/gridLayout/dirtSquare.png',
-				'./images/gridLayout/grassSquare.png',
-				'./images/gridLayout/cementSquare.png'
-			];
-			for(var C = 0; C<backgroundBoxSelectorImages.length; C++){
-				var imageToAdd = document.createElement("img");
-				imageToAdd.src = backgroundBoxSelectorImages[C];
-				imageToAdd.style = "height:100px;"+
-					"width:100px;" + 
-					"position:relative;";
-				imageToAdd.addEventListener("click", function(){
-					alert("Hello");
-				});
 			}
-			boxSelector.backgroundColor="#555";
-			
-			firstDiv.appendChild(boxSelector);
-			}*/
 		gridToAdd.appendChild(firstDiv);
 	}
 	
+	gridToAdd.style.height = appWidth*.1*14+"px";
+	gridToAdd.style.width = appWidth+"px";
+	gridToAdd.style.margin = "0";
 	bodyElement.insertBefore(gridToAdd, gridLayoutIconContainerElement);
 }
 
@@ -119,6 +103,11 @@ function drop(ev){
 	ev.target.appendChild(document.getElementById(data));
 }
 
-function boxBackgroundMenu(){
-	
+function backgroundImageAlert(){
+	if(gridLayoutImageSelectionAlertElement.style.display == "inline"){
+		gridLayoutImageSelectionAlertElement.style.display = "none";
+	}
+	else{
+		gridLayoutImageSelectionAlertElement.style.display = "inline";
+	}
 }
