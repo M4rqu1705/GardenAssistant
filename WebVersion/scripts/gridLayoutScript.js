@@ -69,7 +69,14 @@ function createGrid(){
 		for(var D = 0; D<10; D++){
 			var secondDiv = document.createElement("div");
 			secondDiv.className = "box";
-			secondDiv.addEventListener("dragover", allowDrop);
+			secondDiv.addEventListener("dragover", function(){
+				if(secondDiv.length()){
+
+				}
+				else{
+
+				}
+			});
 			secondDiv.addEventListener("drop", drop);
 			secondDiv.addEventListener("click", backgroundImageAlert());
 			secondDiv.style = "border:1px solid black;" +

@@ -9,40 +9,44 @@ var appHeight = window.innerHeight;
 var appWidth = appHeight*(9/16);
 
 //Header
-bodyElement.style.height = appHeight+"px";
-bodyElement.style.width = appWidth+"px";
-plantLogHeaderElement.style.width = bodyElement.style.width+"px";
-plantLogHeaderElement.style.height = (appHeight*.08)+"px";
+setDimensions(bodyElement, appHeight, appWidth);
+setDimensions(plantLogHeaderElement, (appHeight*.08), appWidth);
+setDimensions(plantLogBackButtonElement, (appHeight*.05), (appHeight*.05));
+setDimensions(plantLogSettingsButtonElement, (appHeight*.05), (appHeight*.05));
+setDimensions(plantLogAddButtonElement, (appWidth*.85)*(38/132), (appWidth*.85));
 
-plantLogBackButtonElement.style.height = (appHeight*.05)+"px";
-plantLogBackButtonElement.style.width = (appHeight*.05)+"px";
 plantLogBackButtonElement.style.marginTop = (appHeight*.015)+"px";
 plantLogBackButtonElement.style.marginLeft = plantLogBackButtonElement.style.marginTop;
 
-plantLogSettingsButtonElement.style.height = (appHeight*.05)+"px";
-plantLogSettingsButtonElement.style.width = (appHeight*.05)+"px";
 plantLogSettingsButtonElement.style.right = (window.innerWidth- appWidth)/2+"px";
 plantLogSettingsButtonElement.style.marginTop = (appHeight*.015)+"px";
 plantLogSettingsButtonElement.style.marginRight = plantLogBackButtonElement.style.marginTop;
 
 //Buttons
-plantLogButtonsContainerElement.style.height = appHeight*.92 + "px";
-
 plantLogAddButtonElement.parentNode.style.marginTop = appHeight*.01+"px";
-plantLogAddButtonElement.style.width = appWidth*.85 +"px";
-plantLogAddButtonElement.style.height = plantLogAddButtonElement.style.width*(38/132) +"px";
-plantLogAddButtonElement.style.fontSize = appHeight*.04 + "px";
-plantLogAddButtonElement.style.textAlign = "center";
+plantLogAddButtonElement.style.fontSize = appHeight*.06 + "px";
+centralizeButtonTextMidde(plantLogAddButtonElement);
 
+refreshButtonStyles();
 
-function refreshButtons(){
+function setDimensions(element, _height, _width){
+	element.style.height = _height + "px";
+	element.style.width = _width + "px";
+}
+
+function centralizeButtonTextMidde(element){
+	element.style.textAlign = "center";
+	element.style.paddingTop = (appWidth*.85)*(38/132)*.15 + "px";
+}
+
+function refreshButtonStyles(){
 	var plantLogButtonsElements = document.getElementsByClassName("plantLogButton");
 	
 	for(C = 0; C<plantLogButtonsElements.length-1; C++){
-		plantLogButtonsElements[C].style.width = appWidth*.85 +"px";
-		plantLogButtonsElements[C].style.height = plantLogButtonsElements[C].style.width*(38/132) +"px";
+		setDimensions(plantLogButtonsElements[C], (appWidth*.85)*(38/132), (appWidth*.85));
+		centralizeButtonTextMidde(plantLogButtonsElements[C]);
 		
-		plantLogButtonsElements[C].style.fontSize = appHeight*.04 + "px";
+		plantLogButtonsElements[C].style.fontSize = appHeight*.06 + "px";
 		
 		plantLogButtonsElements[C].style.marginBottom = appHeight*.01+"px";
 		plantLogButtonsElements[C].style.margin= "auto";
@@ -63,16 +67,13 @@ function refreshButtons(){
 }
 
 function addButton(textInput){
-	var plantLogButtonsContainer = document.getElementById("plantLogButtonsContainer");
-	
-	var nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = textInput;
-	if(nodeToAdd2.innerHTML.length>15)	nodeToAdd2.innerHTML = nodeToAdd2.innerHTML.slice(0,16);
+
+	nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = (textInput.length < 11) ? (textInput == 0) ? "Unnamed" : textInput : textInput.slice(0,11);
 	nodeToAdd1 = document.createElement("a");	nodeToAdd1.innerHTML = nodeToAdd2.outerHTML;
-	var nodesToAdd = document.createElement("div");	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
+	nodesToAdd = document.createElement("div");	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
 	
 	nodesToAdd.className = "plantLogButton";
 
-	plantLogButtonsContainer.insertBefore(nodesToAdd, document.getElementById("plantLogAddButton"));
-		
-	refreshButtons();	
+	plantLogButtonsContainerElement.insertBefore(nodesToAdd, plantLogAddButtonElement);	
+	refreshButtonStyles();	
 }
