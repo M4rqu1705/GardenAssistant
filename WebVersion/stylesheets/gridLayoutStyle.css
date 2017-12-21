@@ -60,4 +60,6 @@ a{
 	position:fixed;
 	margin:auto;
 	padding:0;
+	background-color:#8000;
+	z-index:10;
 }
