@@ -40,12 +40,11 @@ gridLayoutImageSelectionAlertElement.style.top = gridLayoutHeaderElement.style.h
 
 gridLayoutIconContainerElement.style.height = appHeight -(gridLayoutHeaderElement.style.height + (appWidth*.1*14)) + "px";
 
-for(var C = 0; C<gridLayoutIconElements.length; C++){
-	if(gridLayoutIconElements[C].src.substr("./images/gridLayout/appleIcon.png")){
-		gridLayoutIconElements[C].style.width = appWidth*0.09+"px";
-	}
-}
+$("#gridLayoutIconContainer").css({"width":appWidth, "height":(appWidth*1.55), "position":"absolute"});
+$( ".gridLayoutIcon" ).draggable({ grid: [ appWidth*.1, appWidth*.1 ] });
+$( ".gridLayoutIcon" ).css({"width":appWidth*0.09, "z-index":"5", "position":"absolute", "bottom":(appWidth*.1)})
 
+$("img[src='./images/gridLayout/appleIcon.png']").width(100);
 
 createGrid();
 
@@ -67,15 +66,14 @@ function createGrid(){
 		for(var D = 0; D<10; D++){
 			var secondDiv = document.createElement("div");
 			secondDiv.className = "box";
-			secondDiv.addEventListener("dragover", allowDrop);
-			secondDiv.addEventListener("drop", drop);
 			secondDiv.addEventListener("click", backgroundImageAlertToggle(this));
 			secondDiv.style = "border:1px solid black;" +
 				"width:"+appWidth*.1+"px; " +
 				"height:"+appWidth*.1+"px; " +
-				"position:absolute; " +
+				"position:absolute;" +
 				"left:"+((Math.floor(window.innerWidth-appWidth)/2)+(appWidth*.1*D))+"px; " +
-				" top:"+((gridLayoutHeaderElement.style.height)+(appWidth*.1*C))+"px; ";
+				" top:"+((gridLayoutHeaderElement.style.height)+(appWidth*.1*C))+"px; " +
+				"z-index:0";
 			firstDiv.appendChild(secondDiv);
 			}
 		gridToAdd.appendChild(firstDiv);
@@ -84,7 +82,8 @@ function createGrid(){
 	gridToAdd.style.height = appWidth*.1*14+"px";
 	gridToAdd.style.width = appWidth+"px";
 	gridToAdd.style.margin = "0";
-	bodyElement.insertBefore(gridToAdd, gridLayoutIconContainerElement);
+
+	$("body").append(gridToAdd);
 }
 
 function backgroundImageAlertToggle(element){

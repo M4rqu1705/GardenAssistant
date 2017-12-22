@@ -4,7 +4,7 @@ var plantLogBackButtonElement = document.getElementById("plantLogBackButton");
 var plantLogSettingsButtonElement = document.getElementById("plantLogSettingsButton");
 var plantLogButtonsContainerElement = document.getElementById("plantLogButtonsContainer");
 var plantLogAddButtonElement = document.getElementById("plantLogAddButton");
-var plantLogButtonsArray = [["Sample", ""]];
+var plantLogButtonsArray = [];
 
 var appHeight = window.innerHeight;
 var appWidth = appHeight*(9/16);
@@ -60,54 +60,47 @@ function refreshButtonStyles(){
 		plantLogButtonsElements[C].firstChild.href = "./plantLogGenericLayout.html";
 		plantLogButtonsElements[C].firstChild.style = "padding:0; margin:auto; text-decoration:none; text-align:center;";
 		plantLogButtonsElements[C].firstChild.firstChild.style += "padding:0; margin:auto;";	
-		plantLogButtonsElements[C].style.paddingTop = (appWidth*.85)*(38/132)*.15 + "px";
-
-		
+		plantLogButtonsElements[C].style.paddingTop = (appWidth*.85)*(38/132)*.15 + "px";	
 	}
 }
 
 function retrieveButtonsAndDisplay(){
 	if (typeof(Storage) !== "undefined") {
+		console.log("Array = '"+JSON.parse(localStorage.getItem("storedButtons"))+"'");
+		// localStorage.removeItem("storedButtons");
 		if(localStorage.getItem("storedButtons") != null){
-	    	plantLogButtonsArray = localStorage.getItem("storedButtons");
+	    	plantLogButtonsArray = JSON.parse(localStorage.getItem("storedButtons"));
+	    	console.log("Is NOT equal to null");
 		}
 		else{
-			plantLogButtonsArray = [["Sample", ""]];
+			console.log('Is equal to null');
+			plantLogButtonsArray = [["Sample", "This is just some sample text. "]];
 		}
 	    for(C = 0; C < plantLogButtonsArray.length; C++){
-	    	addButton(plantLogButtonsArray[C][0]);
+	    	addButton(plantLogButtonsArray[C][0], false);
+	    	console.log("Displayed " + C + " value");
 	    }
 	} else {
-	    alert("Your browser does not support sotrage");
+		alert("Your browser does not support local storage");
 	}
 }
 
-function addButton(textInput){
+function addButton(textInput, newButton){
 
-	nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = (textInput.length < 11) ? (textInput == 0) ? "Unnamed" : textInput : textInput.slice(0,11);
+	nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = (textInput.length < 11) ? (textInput.length == 0) ? "Unnamed" : textInput : textInput.toString().slice(0,11);
 	nodeToAdd1 = document.createElement("a");	nodeToAdd1.innerHTML = nodeToAdd2.outerHTML;
 	nodesToAdd = document.createElement("div");	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
 	
+	if(newButton){
+		plantLogButtonsArray.push([textInput, ""]);
+		console.log("Array = '"+plantLogButtonsArray+"'");
+	}
 	nodesToAdd.className = "plantLogButton";
 
 	plantLogButtonsContainerElement.insertBefore(nodesToAdd, plantLogAddButtonElement);	
 	refreshButtonStyles();	
 }
 
-function addNewButton(textInput){
-		nodeToAdd2 = document.createElement("span");	nodeToAdd2.innerHTML = (textInput.length < 11) ? (textInput == 0) ? "Unnamed" : textInput : textInput.slice(0,11);
-	console.log("Array = '"+plantLogButtonsArray+"'");
-	plantLogButtonsArray.push([textInput, ""]);
-
-	nodeToAdd1 = document.createElement("a");	nodeToAdd1.innerHTML = nodeToAdd2.outerHTML;
-	nodesToAdd = document.createElement("div");	nodesToAdd.innerHTML = nodeToAdd1.outerHTML;	
-	
-	nodesToAdd.className = "plantLogButton";
-
-	plantLogButtonsContainerElement.insertBefore(nodesToAdd, plantLogAddButtonElement);	
-	refreshButtonStyles();
-}
-
 window.onbeforeunload = function(){
-	localStorage.setItem("storedButtons", plantLogButtonsArray);
+	localStorage.setItem("storedButtons", JSON.stringify(plantLogButtonsArray));
 }

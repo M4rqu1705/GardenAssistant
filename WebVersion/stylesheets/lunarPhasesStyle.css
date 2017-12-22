@@ -2,37 +2,3 @@
     font-family: Silkscreen;
     src: url('./Silkscreen/slkscr.ttf');
 }
-
-*{
-	margin:0;
-	padding:0;
-	overflow-y:auto;
-	overflow-x:hidden;
-	
-	font-family:Silkscreen;
-}
-
-#lunarPhasesBody{
-	margin:auto;
-	padding:0;
-	
-	height:100%;
-	
-	overflow-y:auto;
-	overflow-x:hidden;
-	
-	background:#200646 url("./../images/lunarPhases/lunarPhasesBackground.png") no-repeat center top;
-	background-size: auto 100%;
-}
-
-a{
-	display: block;
-	width:100%!important;
-	height:100%!important;
-}
-
-#lunarPhasesBackButton{
-	background:#0000 url("./../images/lunarPhases/lunarPhasesBackButton.png") no-repeat center top;
-	background-size: 100% 100%;
-
-}
