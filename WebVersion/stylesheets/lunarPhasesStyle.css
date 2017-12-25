@@ -2,3 +2,52 @@
     font-family: Silkscreen;
     src: url('./Silkscreen/slkscr.ttf');
 }
+
+body{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	font-family:Silkscreen;
+}
+
+a{
+	display:block;
+	width:100%;
+	height:100%;
+}
+
+#lunarPhasesBody{
+	margin:auto;
+	padding:0;
+	overflow:hidden;
+	background:#200646 url("./../images/lunarPhases/lunarPhasesBackground.png") no-repeat center top;
+	background-size: auto 100%;
+}
+
+#lunarPhasesHeader{
+	position:absolute;
+	top:0;
+	margin:auto;
+}
+
+#lunarPhasesBackButton{
+	opacity:1;
+	background:#0000 url("./../images/lunarPhases/lunarPhasesBackButton.png") no-repeat center top;
+	background-size: 100% 100%;
+}
+#lunarPhasesBackButton:hover{
+	opacity:0.5;
+}
+
+#lunarPhasesCurrentDate{
+	color:#fff;
+	font-family:Silkscreen;
+	position:absolute;
+	top:0;
+	right:0;
+	text-align: right;
+}
+
+#lunarPhasesImage{
+	position: absolute;
+}

@@ -4,15 +4,13 @@ var currentLunarPhase = getMoonPhase(lunarPhasesDateObject.getFullYear(), (lunar
 var appHeight = window.innerHeight;
 var appWidth = appHeight*(9/16);
 
-$("body").children().css({"margin":"0", "padding":"0", "overflow":"hidden", "font-family":"Silkscreen"});
-$("a").css({"display": "block", "width":"100%", "height":"100%"});
-$("#lunarPhasesBody").css({"height":appHeight, "width":appWidth, "margin":"auto", "padding":"0", "overflow":"hidden", "background":"#200646 url('./images/lunarPhases/lunarPhasesBackground.png') no-repeat center top", "background-size": "auto 100%"});
-$("#lunarPhasesHeader").css({"height":(appHeight*0.08), "width":appWidth});
-$("#lunarPhasesBackButton").css({"height":(appHeight*0.05), "width":(appHeight*0.05), "margin-top":(appHeight*0.015), "margin-left":(appHeight*.015), "background":"#0000 url('./images/lunarPhases/lunarPhasesBackButton.png') no-repeat center top", "background-size": "100% 100%"});
-$("#lunarPhasesCurrentDate").css({"height":(appHeight*0.05), "width":(appWidth	*0.5),  "margin-top":(appHeight*0.015), "margin-right":(appHeight*.015), "color":"#ffffff", "font-size":(appHeight*.04), "position":"absolute", "top":"0", "right":((window.innerWidth - appWidth)/2), "text-align":"right"});
-$("#lunarPhasesImage").css({"height":(appHeight*0.92), "width":(appWidth),"position": "absolute", "top":(appHeight*0.08), "z-index":"1"});	
 
-$("#lunarPhasesBackButton").hover(function(){$(this).css({"opacity":"0.5"});}, function(){$(this).css({"opacity":"1"});});
+$("#lunarPhasesBody").css({"height":appHeight, "width":appWidth});
+$("#lunarPhasesHeader").css({"height":(appHeight*0.08), "width":appWidth});
+$("#lunarPhasesBackButton").css({"height":(appHeight*0.05), "width":(appHeight*0.05), "margin-top":(appHeight*0.015), "margin-left":(appHeight*.015)});
+$("#lunarPhasesCurrentDate").css({"height":(appHeight*0.05), "width":(appWidth	*0.5),  "margin-top":(appHeight*0.015), "margin-right":(appHeight*.015), "font-size":(appHeight*.04)});
+$("#lunarPhasesImage").css({"height":(appHeight*0.92), "width":(appWidth), "top":(appHeight*0.08)});	
+
 $("#lunarPhasesCurrentDate").text(lunarPhasesDateObject.getDate() + "/" + (lunarPhasesDateObject.getMonth()+1) + "/" + lunarPhasesDateObject.getFullYear());
 
 switch(currentLunarPhase){
