@@ -51,7 +51,7 @@ function refreshButtonStyles(){
 
 function retrieveButtonsAndDisplay(){
 	if (typeof(Storage) != undefined) {
-		//localStorage.removeItem("buttonsObject");
+		//	localStorage.removeItem("buttonsObject");
 		if(localStorage.getItem("buttonsObject") != null || localStorage.getItem("buttonsObject") != undefined){
 	    	userDataObject = JSON.parse(localStorage.getItem("buttonsObject"));
 	    	console.log("buttonsObject does not equal null");
@@ -101,3 +101,5 @@ window.onbeforeunload = function(){
 window.onerror = function(msg, url, linenumber) {
     alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
 }
+
+//version 1
