@@ -25,27 +25,23 @@ $("#gridLayoutIconContainer").css({"width":appWidth, "height":(appHeight*0.9), p
 
 $(".gridLayoutIcon").css({"width":appWidth*0.09, "z-index":"5"}).draggable({
 	helper:'clone',
-	stack:"#gridLayoutIconContainer",
-	start:function(e, ui){
-		$(ui.draggable).appendTo($("#grid")).css({"z-index":"5"});
+	//stack:"#gridLayoutIconContainer",
+	drag:function(e, ui){
+		$(ui.draggable).appendTo($("#gridLayoutBody")).css({"z-index":"5"});
 	}
 });
 
 //Dialogs
  $("#imageSelectionAlert").dialog({
     autoOpen: false,
-    height: (appWidth*0.9),
+    height: (appWidth*0.4),
     width: (appWidth*0.9),
 	modal: true,
 	draggable:false,
 	closeOnEscape: false,
 	position:{ my: "top", at: "top+25%", of: "#gridLayoutBody" },
-	buttons: {
-            "": function () {
-                $(this).dialog("close");
-            }
-        }
-}).css({height:(appWidth*0.1), width:(appWidth*0.875), padding: ((appHeight*0.025) + "px 0px 0px " + (appWidth*0.06) + "px	"), margin:"auto"});
+	resizable:true
+}).css({height:(appWidth*0.25), "max-width":(appWidth*0.765), "margin":((appHeight*0.025) + "px auto 0px auto"), padding:0});
 
 $("#gridLayoutSettings").dialog({
     autoOpen: false,
@@ -59,7 +55,7 @@ $("#gridLayoutSettings").dialog({
 
 
 
-$(".imageSelectionAlertImage").css({height:(appWidth*0.175), width:(appWidth*0.175), padding:0, margin:"0"});
+$(".imageSelectionAlertImage").css({height:(appWidth*0.175), width:(appWidth*0.175), padding:0, margin:0});
 
 
 
@@ -100,27 +96,18 @@ function createGrid(){
 						}).appendTo($(this)).draggable({
 							helper:"original",
 							//grid: [appWidth*0.1, appWidth*0.1],
-							stack:"true"
+							stack:"true",
 						}).css({
-							margin:"auto",
-							padding:0,
-							top:0,
-							left:0,
-							bottom:0,
-							right:0
+							margin:"auto", top:0, right:0, left:0, bottom:0
 						}).removeClass("original");
 					}
 					else{
 						$(ui.draggable).appendTo($(this)).draggable({
 							helper:"original",
 							//grid: [appWidth*0.1, appWidth*0.1],
+							stack:true
 						}).css({
-							margin:"auto",
-							padding:0,
-							top:0,
-							left:0,
-							bottom:0,
-							right:0
+							margin:"auto", top:0, right:0, left:0, bottom:0
 						});
 					}
 				}
