@@ -1,20 +1,53 @@
-var bodyElement = document.getElementsByTagName("body")[0];
-bodyElement.style.height = window.innerHeight+"px";
-bodyElement.style.width = window.innerHeight*(9/16)+"px";
+var userDataObject = {"plantLog":{"buttons":[{"name":"Sample", "description":"This is a sample text"}]}};
 
-var journalHeaderElement = document.getElementById("journalHeader");
-journalHeaderElement.style.width = bodyElement.style.width+"px";
-journalHeaderElement.style.height = (window.innerHeight*.08)+"px";
+retrieveButtonsAndDisplay();
+stylePage(1);
 
-var journalBackButtonElement = document.getElementById("journalBackButton");
-journalBackButtonElement.style.height = (window.innerHeight*.05)+"px";
-journalBackButtonElement.style.width = (window.innerHeight*.05)+"px";
-journalBackButtonElement.style.marginTop = (window.innerHeight*.015)+"px";
-journalBackButtonElement.style.marginLeft = journalBackButtonElement.style.marginTop;
+function retrieveButtonsAndDisplay(){
+	if (typeof(Storage) != undefined) {
+		//	localStorage.removeItem("buttonsObject");
+		if(localStorage.getItem("buttonsObject") != null || localStorage.getItem("buttonsObject") != undefined){
+	    	userDataObject = JSON.parse(localStorage.getItem("buttonsObject"));
+	    	console.log("buttonsObject does not equal null");
+		}
+		else{
+			userDataObject = {"plantLog":{"buttons":[{"name":"Sample", "description":"This is a sample text"}]}};
+			console.log('buttonsObject equals null');
+		}
 
-var journalSettingsButtonElement = document.getElementById("journalSettingsButton");
-journalSettingsButtonElement.style.height = (window.innerHeight*.05)+"px";
-journalSettingsButtonElement.style.width = (window.innerHeight*.05)+"px";
-journalSettingsButtonElement.style.right = (window.innerWidth- window.innerHeight*(9/16))/2+"px";
-journalSettingsButtonElement.style.marginTop = (window.innerHeight*.015)+"px";
-journalSettingsButtonElement.style.marginRight = journalBackButtonElement.style.marginTop;
+	} else {
+		alert("Your browser does not support local storage");
+	}
+
+	if(window.AppInventor !== undefined){
+    	userDataObject = JSON.parse(urldecode(window.AppInventor.getWebViewString()));
+    	for(x in userDataObject.plantLog.buttons){
+			addOneButton(userDataObject.plantLog.buttons[x].name, false);
+		}
+	}
+}
+
+function addOneButton(textInput, newButton){
+	textInput = (textInput.length < 11) ? (textInput.length == 0) ? "Unnamed" : textInput : textInput.toString().slice(0,11)
+
+	$('<div>',{
+  		'class' : 'plantLogButton',
+  		'html': $('<a>',{
+   			"href":"./plantLogGenericLayout.html",
+    		'html' : $('<span>').text(textInput)
+  		})
+	}).insertBefore(document.getElementById("addButton"));
+
+	if(newButton && userDataObject.plantLog.buttons!=undefined){
+		userDataObject.plantLog.buttons.push({"name":textInput, "description":""});
+		//console.log("buttonsObject.buttons = '"+JSON.stringify(userDataObject.buttons));
+	}
+
+	stylePage(1);	
+}
+
+window.onbeforeunload = function(){
+	localStorage.setItem("buttonsObject", JSON.stringify(userDataObject));
+	if(window.AppInventor !== undefined) window.AppInventor.setWebViewString(JSON.stringify(userDataObject));
+	alert(userDataObject);	
+}
