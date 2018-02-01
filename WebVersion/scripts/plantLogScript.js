@@ -8,8 +8,10 @@ $(document).ready(function(){
 
 
 function displayButtons(){
-	for(var C = 0; C<userDataObject.plantLog.length; C++){
-		addOneButton(userDataObject.plantLog[C].name, false);
+	if(userDataObject != undefined || userDataObject != null){
+		for(var C = 0; C<userDataObject.plantLog.length; C++){
+			addOneButton(userDataObject.plantLog[C].name, false);
+		}
 	}
 }
 

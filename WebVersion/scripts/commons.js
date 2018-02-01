@@ -116,37 +116,51 @@ function stylePage(pageToDisplay) {
 			});
 
 			$(".menuButton").css({
-				"position":"absolute",
-				"top":appHeight*0.4625,
-				"left":((window.innerWidth-appWidth)/2)-appWidth,
-				"width":appWidth*0.8,
-				"height":appHeight*0.0775,
-				"margin":"auto",
-				"margin-left":appWidth*0.1,
-				"padding":"0",
+				"position": "absolute",
+				"top": appHeight * 0.4625,
+				"left": ((window.innerWidth - appWidth) / 2),
+				"width": appWidth * 0.8,
+				"height": appHeight * 0.0775,
+				"margin": "auto",
+				"margin-left": appWidth * 0.1,
+				"padding": "0",
 			}).on({
-		mouseenter: function() {
-			$(this).css({
-				"opacity": 0.5
+				mouseenter: function() {
+					$(this).css({
+						"opacity": 0.5
+					});
+				},
+				mouseleave: function() {
+					$(this).css({
+						"opacity": 1
+					});
+				}
 			});
-		},
-		mouseleave: function() {
-			$(this).css({
-				"opacity": 1
+
+			$("#gridLayoutButton").css({
+				"background": "url('./images/mainMenu/gardenPlansMainMenuButton.png') center top / 100% 100% no-repeat #0000",
+				"margin-top": 0
 			});
-		}
-	});
 
-			$("#gridLayout").css({"background": "url('./images/mainMenu/gardenPlansMainMenuButton.png') center top / 100% no-repeat #0000", "margin-top":0});
+			$("#journalButton").css({
+				"background": "url('./images/mainMenu/journalMainMenuButton.png') center top / 100% no-repeat #0000",
+				"margin-top": appHeight * 0.101
+			});
 
-			$("#journalButton").css({"background": "url('./images/mainMenu/journalMainMenuButton.png') center top / 100% no-repeat #0000", "margin-top":appHeight*0.1});
+			$("#plantLogButton").css({
+				"background": "url('./images/mainMenu/plantLogMainMenuButton.png') center top / 100% no-repeat #0000",
+				"margin-top": appHeight * 0.202
+			});
 
-			$("#plantLogButton").css({"background": "url('./images/mainMenu/plantLogMainMenuButton.png') center top / 100% no-repeat #0000", "margin-top":appHeight*0.2});
+			$("#lunarPhaseButton").css({
+				"background": "url('./images/mainMenu/lunarPhaseMainMenuButton.png') center top / 100% no-repeat #0000",
+				"margin-top": appHeight * 0.303
+			});
 
-			$("#lunarPhaseButton").css({"background": "url('./images/mainMenu/lunarPhaseMainMenuButton.png') center top / 100% no-repeat #0000", "margin-top":appHeight*0.3});
-
-			$("#settingsButton").css({"background": "url('./images/mainMenu/settingsMainMenuButton.png') center top / 100% no-repeat #0000", "margin-top":appHeight*0.4});
-
+			$("#settingsButton").css({
+				"background": "url('./images/mainMenu/settingsMainMenuButton.png') center top / 100% no-repeat #0000",
+				"margin-top": appHeight * 0.404
+			});
 
 			break;
 		case 1:
