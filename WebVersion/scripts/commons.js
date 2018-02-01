@@ -1,27 +1,64 @@
-function retrieveData(key) {
-	if (typeof(Storage) != undefined) {
-		//localStorage.removeItem("buttonsObject");
-		if (typeof(localStorage.getItem(key)) == "string" && localStorage.getItem(key) != undefined) {
-			return (JSON.parse(localStorage.getItem(key)));
-		} else {
-			alert(key.toString() + "not found");
-		}
-
-	} else if (window.AppInventor !== undefined) {
-		return JSON.parse(urldecode(window.AppInventor.getWebViewString()));
-	} else {
-		alert("Your browser does not support local storage");
+function cutInputToLength(input, limit){
+	if(input.length >= limit){
+		return (input.slice(0,(limit-3)) + "...");
 	}
+	else if (input.length == 0 || input == undefined || input == null){
+		return "Unnamed";
+	}
+	else return input;
 }
 
-function setData(key, data) {
-	if (typeof(Storage) != undefined) {
-		localStorage.setItem(key, JSON.stringify(data));
-	} else if (window.AppInventor !== undefined) {
-		window.AppInventor.setWebViewString(JSON.stringify(data));
-	} else {
-		alert("Your browser does not support local storage");
+function redirect(whereTo){
+		window.open(whereTo, "_self");
+}
+
+function getData(type, key) {
+	if (type == "sessionStorage") {
+		if (typeof(Storage) != undefined) {
+			if (typeof(sessionStorage.getItem(key)) == "string" && sessionStorage.getItem(key) != "undefined") {
+				return (JSON.parse(sessionStorage.getItem(key)));
+			} else {
+				console.log(key.toString() + "not found");
+				return "undefined"
+			}
+		} else {
+			alert("Your browser does not support session storage");
+		}
+	} else if (type == "localStorage") {
+		if (typeof(Storage) != undefined) {
+			if (typeof(localStorage.getItem(key)) == "string" && localStorage.getItem(key) != "undefined") {
+				return (JSON.parse(localStorage.getItem(key)));
+			} else {
+				console.log((key.toString() + "not found"));
+				return "undefined"
+			}
+
+		} else if (window.AppInventor !== undefined) {
+			return JSON.parse(urldecode(window.AppInventor.getWebViewString()));
+		} else {
+			alert("Your browser does not support local storage");
+		}
 	}
+
+}
+
+function setData(type, key, data) {
+	if (type == "sessionStorage") {
+		if (typeof(Storage) != undefined) {
+			sessionStorage.setItem(key, JSON.stringify(data));
+		} else {
+			alert("Your browser does not support session storage");
+		}
+	} else if (type == "localStorage") {
+		if (typeof(Storage) != undefined) {
+			localStorage.setItem(key, JSON.stringify(data));
+		} else if (window.AppInventor !== undefined) {
+			window.AppInventor.setWebViewString(JSON.stringify(data));
+		} else {
+			alert("Your browser does not support local storage");
+		}
+	}
+
 }
 
 function stylePage(pageToDisplay) {
@@ -163,9 +200,10 @@ function stylePage(pageToDisplay) {
 			});
 
 			break;
+
 		case 1:
-			$("#nameLabel").text(sessionStorage.genericLayoutTitleName);
-			$("textarea").text(sessionStorage.genericLayoutContent);
+			$("#nameLabel").val(getData("sessionStorage", "genericLayoutTitleName"));
+			$("textarea").text(getData("sessionStorage", "genericLayoutContent"));
 
 			$("body").css({
 				"background": "url('./images/journal/journalBackground.png') center top / auto 100% no-repeat #f6f1b4"
@@ -184,6 +222,7 @@ function stylePage(pageToDisplay) {
 				"top": 0,
 				"margin-top": headerButtonMargins[0],
 				"margin-left": (appWidth * 0.14),
+				"border":"none",
 
 				"font-family": "Silkscreen",
 				"font-size": appWidth * 0.075,
@@ -193,7 +232,7 @@ function stylePage(pageToDisplay) {
 				"background-color": "#FFF",
 				"border-radius": standardBorderRadius,
 				"box-shadow": "inset 0px 0px 10px #875D27"
-			}).text(($("#nameLabel").text().length < 16) ? ($("#nameLabel").text().length == 0) ? "Unnamed" : $("#nameLabel").text() : ($("#nameLabel").text().slice(0, 13) + "..."));
+			}).text((cutInputToLength($("#nameLabel").text())));
 
 			$("#brownCover").css({
 				"height": headerButtonDimensions[0] * 1.1,

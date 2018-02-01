@@ -28,8 +28,8 @@
 
 <body>
     <div id="header">
-        <div id="backButton"><a href="./plantLog.html"></a></div>
-        <div id="nameLabel"></div>
+        <div id="backButton"><a href="./saveData.html"></a></div>
+        <input id="nameLabel"></input>
         <div id="brownCover"></div>
     </div>
 
@@ -37,17 +37,21 @@
 
     <script>
         stylePage(1);
-        $("#backButton").children(":first").attr({"href": sessionStorage.backTo});
+        $("#backButton").children(":first").attr({"href": getData("sessionStorage","redirectTowards")});
         
         $(window).unload(function() {
-            userDataObject = retrieveData("buttonsObject");
+            userDataObject = getData("sessionStorage", "buttonsObject");
+
             for (var C = 0; C < userDataObject.plantLog.length; C++) {
-                if (userDataObject.plantLog[C].name == sessionStorage.genericLayoutTitleName) {
-                    userDataObject.plantLog[C]['description'] = $("textarea").val();
-                    sessionStorage.genericLayoutContent = $("textarea").val();
+                if (userDataObject.plantLog[C].name == getData("sessionStorage", "genericLayoutTitleName").replace(/"/g,"")) {
+                    userDataObject.plantLog[C].name = $("#nameLabel").val();
+                    setData("sessionStorage", "genericLayoutTitleName", $("#nameLabel").val());
+                    userDataObject.plantLog[C].description = $("textarea").val();
+                    setData("sessionStorage", "genericLayoutContent", $("textarea").val());
                 }
             }
-            setData("buttonsObject", userDataObject);
+            setData("sessionStorage", "buttonsObject", userDataObject);
+            console.log("finished");
         });
     </script>
 </body>

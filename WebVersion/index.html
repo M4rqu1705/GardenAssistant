@@ -8,9 +8,8 @@
 		
 		<base href="./">
 
-		<link rel="stylesheet" href="./stylesheets/w3css.css">
-		<link rel="styelsheet" href="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.min.css">
-		
+		<link rel="stylesheet" href="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.min.css">
+		<style>@font-face {font-family: Silkscreen;src: url('./Silkscreen/slkscr.ttf');} </style>
 		<script src="./scripts/jQuery/jquery-3.2.1.min.js"></script>
 		<script src="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 		<script src="./scripts/jQuery/jquery.ui.touch-punch.js"></script>
@@ -20,19 +19,19 @@
 	</head>
 	<body>
 			<div id="gridLayoutButton" class="menuButton">
-				<a href="./gridLayout.html"></a>
+				<a href="./saveData.html" onclick="setData('sessionStorage', 'redirectTowards', './gridLayout.html');"></a>
 			</div>
 			<div id="journalButton" class="menuButton">
-				<a href="./journal.html"></a>
+				<a href="./saveData.html" onclick="setData('sessionStorage', 'redirectTowards', './journal.html');"></a>
 			</div>
 			<div id="plantLogButton" class="menuButton">
-				<a href="./plantLog.html"></a>
+				<a href="./saveData.html" onclick="setData('sessionStorage', 'redirectTowards', './plantLog.html');"></a>
 			</div>
 			<div id="lunarPhaseButton" class="menuButton">
-				<a href="./lunarPhases.html"></a>
+				<a href="./saveData.html" onclick="setData('sessionStorage', 'redirectTowards', './lunarPhases.html');"></a>
 			</div>
 			<div id="settingsButton" class="menuButton">
-				<a href="./settings.html"></a>
+				<a href="./saveData.html" onclick="setData('sessionStorage', 'redirectTowards', './settings.html');"></a>
 			</div>
 
 			<script>stylePage(0);</script>
