@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="Author" content="Daniela Mendez Marxuach">
-		<meta name="Author" content="Marcos Pesante Colon">
 
-		<base href="./">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Daniela Mendez Marxuach">
+    <meta name="Author" content="Marcos Pesante Colon">
 
-		<link rel="stylesheet" href="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.css">
-		<link rel="stylesheet" href="./stylesheets/w3css.css">
-		<style>	@font-face{	font-family:Silkscreen;	src:url('./Silkscreen/slkscr.ttf'); }</style>
-	
-		<!--Javascript Imports-->
-		<script src="./scripts/jQuery/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-		<script src="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>
-		<script src="./scripts/jQuery/jquery.ui.touch-punch.js"></script>
-		<script src="./scripts/commons.js"></script>
-		<script src="./scripts/entryToGenericLayout.js" type="text/javascript"></script>	
+    <base href="./">
 
-	</head>
-	<body >
-			<div id="header">
-				<div id="backButton"><a href="./plantLog.html"></a></div>
-				<div id="nameLabel"></div>
-				<div id="brownCover"></div>
-			</div>
-			
-			<textarea></textarea>
+    <link rel="stylesheet" href="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="./stylesheets/w3css.css">
+    <style>
+        @font-face {
+            font-family: Silkscreen;
+            src: url('./Silkscreen/slkscr.ttf');
+        }
+    </style>
 
-			<script>stylePage(1);</script>
-	</body>
+    <!--Javascript Imports-->
+    <script src="./scripts/jQuery/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script src="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="./scripts/jQuery/jquery.ui.touch-punch.js"></script>
+    <script src="./scripts/commons.js"></script>
+
+</head>
+
+<body>
+    <div id="header">
+        <div id="backButton"><a href="./plantLog.html"></a></div>
+        <div id="nameLabel"></div>
+        <div id="brownCover"></div>
+    </div>
+
+    <textarea></textarea>
+
+    <script>
+        stylePage(1);
+        $("#backButton").children(":first").attr({"href": sessionStorage.backTo});
+        
+        $(window).unload(function() {
+            userDataObject = retrieveData("buttonsObject");
+            for (var C = 0; C < userDataObject.plantLog.length; C++) {
+                if (userDataObject.plantLog[C].name == sessionStorage.genericLayoutTitleName) {
+                    userDataObject.plantLog[C]['description'] = $("textarea").val();
+                    sessionStorage.genericLayoutContent = $("textarea").val();
+                }
+            }
+            setData("buttonsObject", userDataObject);
+        });
+    </script>
+</body>
+
 </html>

@@ -8,7 +8,6 @@
 		
 		<base href="./">
 
-		<link rel="stylesheet" href="./stylesheets/mainStyle.css">
 		<link rel="stylesheet" href="./stylesheets/w3css.css">
 		<link rel="styelsheet" href="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.min.css">
 		
@@ -16,24 +15,26 @@
 		<script src="./scripts/jQuery/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 		
 		<script src="./scripts/jQuery/jquery.ui.touch-punch.js"></script>
+		<script src="./scripts/commons.js" type="text/javascript"></script>
 
 	</head>
-	<body id="mainMenuBody" class="w3-container">
-			<div id="mainMenuGridLayoutButton">
+	<body>
+			<div id="gridLayoutButton" class="menuButton">
 				<a href="./gridLayout.html"></a>
 			</div>
-			<div id="mainMenuJournalButton">
+			<div id="journalButton" class="menuButton">
 				<a href="./journal.html"></a>
 			</div>
-			<div id="mainMenuPlantLogButton">
+			<div id="plantLogButton" class="menuButton">
 				<a href="./plantLog.html"></a>
 			</div>
-			<div id="mainMenuLunarPhaseButton">
+			<div id="lunarPhaseButton" class="menuButton">
 				<a href="./lunarPhases.html"></a>
 			</div>
-			<div id="mainMenuSettingsButton">
+			<div id="settingsButton" class="menuButton">
 				<a href="./settings.html"></a>
 			</div>
-			<script src="./scripts/mainScript.js" type="text/javascript"></script>	
+
+			<script>stylePage(0);</script>
 	</body>
 </html>
