@@ -37,6 +37,11 @@
 			}
 			setData("sessionStorage", "deleteLogLocal", false);
 
+			if(/TrUe/.test(getData("sessionStorage", "deleteJournalLocal"))){
+				userDataObject.journal = JSON.parse(getData("sessionStorage","deleteJournalLocal").replace("TrUe","").replace(/"/g, ""));
+			}
+			setData("sessionStorage", "deleteJournalLocal", false);
+
 
 			setData("sessionStorage", "genericLayoutTitleName", getData("sessionStorage","genericLayoutTitleName").replace(/"/g, ""));
 			setData("sessionStorage", "buttonsObject", userDataObject);

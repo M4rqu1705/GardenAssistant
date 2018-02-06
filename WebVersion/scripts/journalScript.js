@@ -1,53 +1,45 @@
-var userDataObject = {"plantLog":{"buttons":[{"name":"Sample", "description":"This is a sample text"}]}};
+$(document).ready(function() {
+    userDataObject = getData("sessionStorage", "buttonsObject");
+    displayButtons(userDataObject);
+    stylePage(1);
+});
 
-retrieveButtonsAndDisplay();
-stylePage(1);
-
-function retrieveButtonsAndDisplay(){
-	if (typeof(Storage) != undefined) {
-		//	localStorage.removeItem("buttonsObject");
-		if(localStorage.getItem("buttonsObject") != null || localStorage.getItem("buttonsObject") != undefined){
-	    	userDataObject = JSON.parse(localStorage.getItem("buttonsObject"));
-	    	console.log("buttonsObject does not equal null");
-		}
-		else{
-			userDataObject = {"plantLog":{"buttons":[{"name":"Sample", "description":"This is a sample text"}]}};
-			console.log('buttonsObject equals null');
-		}
-
-	} else {
-		alert("Your browser does not support local storage");
-	}
-
-	if(window.AppInventor !== undefined){
-    	userDataObject = JSON.parse(urldecode(window.AppInventor.getWebViewString()));
-    	for(x in userDataObject.plantLog.buttons){
-			addOneButton(userDataObject.plantLog.buttons[x].name, false);
-		}
-	}
+function displayButtons(data) {
+    if (data != "undefined" && !(/\[\]/.test(data.plantLog))) {
+        for (var C = 0; C < data.journal.length; C++) {
+            addOneButton(data.journal[C].name, false);
+        }
+    }
 }
 
-function addOneButton(textInput, newButton){
-	textInput = (textInput.length < 11) ? (textInput.length == 0) ? "Unnamed" : textInput : textInput.toString().slice(0,11)
+function addOneButton(textInput, newButton) {
+    $('<div>', {
+        'class': 'plantLogButton',
+        'html': $('<a>', {
+            "href": "./plantLogGenericLayout.html",
+            'html': $('<span>').text(cutInputToLength(textInput, 14))
+        })
+    }).on("click", function() {
+        setData("sessionStorage", "genericLayoutTitleName", $(this).children(":first").children(":first").text());
+        for (var C = 0; C < userDataObject.journal.length; C++) {
+            if (userDataObject.journal[C].name == getData("sessionStorage", "genericLayoutTitleName")) {
+                setData("sessionStorage", "genericLayoutContent", userDataObject.journal[C]['description']);
+            }
+        }
+        setData("sessionStorage", "redirectTowards", "./journal.html");
+    }).insertBefore($("#addButton"));
 
-	$('<div>',{
-  		'class' : 'plantLogButton',
-  		'html': $('<a>',{
-   			"href":"./plantLogGenericLayout.html",
-    		'html' : $('<span>').text(textInput)
-  		})
-	}).insertBefore(document.getElementById("addButton"));
+    if (newButton) {
+        userDataObject.journal.push({
+            name: textInput,
+            description: ""
+        });
+        setData("sessionStorage", "buttonsObject", userDataObject);
+    }
 
-	if(newButton && userDataObject.plantLog.buttons!=undefined){
-		userDataObject.plantLog.buttons.push({"name":textInput, "description":""});
-		//console.log("buttonsObject.buttons = '"+JSON.stringify(userDataObject.buttons));
-	}
-
-	stylePage(1);	
+    stylePage(1);
 }
 
-window.onbeforeunload = function(){
-	localStorage.setItem("buttonsObject", JSON.stringify(userDataObject));
-	if(window.AppInventor !== undefined) window.AppInventor.setWebViewString(JSON.stringify(userDataObject));
-	alert(userDataObject);	
+window.onbeforeunload = function() {
+    setData("sessionStorage", "buttonsObject", userDataObject);
 }

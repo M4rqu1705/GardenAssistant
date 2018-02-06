@@ -317,9 +317,9 @@ function stylePage(pageToDisplay) {
 /////////////////////////////////////////////////////////////////////////////////////////
             
             $("#settingsDialog").css({
-                "height": appHeight * 0.3,
+                "height": appHeight * 0.1,
                 "width": appWidth * 0.8,
-                "margin": 0,
+                "margin": "auto",
                 "padding": 0,
 
                 "overflow":"hidden"
@@ -333,7 +333,7 @@ function stylePage(pageToDisplay) {
 
             })*/;
 
-            $("#deleteAllButtons").css({
+            $("#deleteAllButtonsLog").css({
                 "height": appHeight * 0.075,
                 "width": appWidth * 0.8,
                 "margin": "auto",
@@ -353,6 +353,29 @@ function stylePage(pageToDisplay) {
                 setData("sessionStorage", "deleteLogLocal", "TrUe[]");
                 redirect("./saveData.html");
             });
+
+            $("#deleteAllButtonsJournal").css({
+                "height": appHeight * 0.075,
+                "width": appWidth * 0.8,
+                "margin": "auto",
+                "margin-top":appHeight*0.01,
+                "padding": 0,
+                "background-color":"#FDF9CF",
+                "border": appHeight*0.005+ "px solid #E1874B",
+                "border-radius":standardBorderRadius,
+
+                "line-height":"2",
+                "text-align":"center",
+                "font-family":"Silkscreen", 
+                "font-size":appHeight*0.035
+            }).text("Delete all buttons").on("click", function(){
+                setData("sessionStorage", "buttonsObject", '');
+                setData("localStorage", "buttonsObject", '');
+                setData("sessionStorage", "deleteJournalLocal", "TrUe[]");
+                redirect("./saveData.html");
+            });
+
+            
 
             $("#deleteOneButton").css({
                 "height": appHeight * 0.075,
