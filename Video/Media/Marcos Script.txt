@@ -1,0 +1,1 @@
+You can add and rename buttons to whichever name you want to if it is within 16 characters, and then you can edit the contents inside the plant description.
